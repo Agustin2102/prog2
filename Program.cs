@@ -8,7 +8,7 @@
 void Iniciar()
 {
     List<Autor> autores = GenerarAutores();
-    Console.Write("Ingrese total de autores a crear: ");
+    Console.Write("Ingrese total de autores a crear:  ");
     int total = int.Parse(Console.ReadLine());
     
 
