@@ -74,7 +74,7 @@ public class nPrincipal {
   void ImprimirAutores(List<Autor> autores){
     foreach (Autor a in autores)
     {
-      Console.WriteLine($"Id: {a.Id} - {a.Nombre} {a.Apellido}");
+      Console.WriteLine($" {a.Nombre} {a.Apellido}");
     }
   }
 
