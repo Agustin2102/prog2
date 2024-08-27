@@ -5,6 +5,6 @@
 // 6- Agregar la opción de poder listar los libros de un autor.
 // 5- Agregar la opción de poder cargar un libro nuevo a un autor.
 
-nPrincipal.Menu();
+nPrincipal.Inicio();
 
 
