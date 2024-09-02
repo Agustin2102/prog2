@@ -38,6 +38,24 @@ public class nAutor
       Console.WriteLine($"{autores.IndexOf(a)} - {a.Nombre} {a.Apellido} ({a.Id})");
     }
   }
+  public static void Listar(List<Autor> autores, List<Libro> libros)
+  {
+    Console.WriteLine("----------------------");
+    Console.WriteLine("\tAutores");
+    Console.WriteLine("----------------------");
+    foreach(Autor a in autores)
+    {
+      Console.WriteLine($"{autores.IndexOf(a)} - {a.Nombre} {a.Apellido} ({a.Id})");
+      List<Libro> librosDelAutor = libros.FindAll( (el) => el.Autor.Id == a.Id);
+      if (librosDelAutor.Count > 0){
+        Console.WriteLine("   Libros:");
+        librosDelAutor.ForEach( libro => {
+          Console.WriteLine($"    - {libro.Titulo}");
+        });
+      }
+      Console.WriteLine("----------------------");
+    }
+  }
 
   public static Autor Seleccionar(List<Autor> autores)
   {
@@ -58,5 +76,9 @@ public class nAutor
     a.Apellido = Console.ReadLine();
   }
 
-
+  public static void Eliminar(List<Autor> autores){
+    Console.Clear();
+    Autor a = Seleccionar(autores);
+    autores.Remove(a);
+  }
 }
