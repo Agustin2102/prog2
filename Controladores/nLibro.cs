@@ -12,8 +12,9 @@ public class nLibro
     // Mostrar la lista de autores para seleccionar uno
     Console.WriteLine("Seleccione un autor:");
     Autor autor = nAutor.Seleccionar(autores);
-
-    Libro libro = new (id, titulo, autor);
+    Console.WriteLine("Ingrese la cantidad de paginas: ");
+    int paginas = int.Parse(Console.ReadLine());
+    Libro libro = new (id, titulo, autor, paginas);
     return libro;
   }
 

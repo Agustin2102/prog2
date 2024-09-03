@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 public class nAutor
 {
   public static Autor Crear(int id)
@@ -54,6 +56,19 @@ public class nAutor
         });
       }
       Console.WriteLine("----------------------");
+    }
+  }
+
+  public static void Listar(List<Libro> libros)
+  {
+    var librosAgrupados = libros.GroupBy(l => l.Autor);
+    foreach(var l in librosAgrupados)
+    {
+      Console.WriteLine(l.Key);
+      foreach(var x in l)
+      {
+        Console.WriteLine(x.Titulo);
+      }
     }
   }
 
