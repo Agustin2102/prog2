@@ -9,6 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<IAutorService, AutorFileService>();
+builder.Services.AddScoped<ILibroService, LibroFileService>();
 
 var app = builder.Build();
 

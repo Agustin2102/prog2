@@ -53,19 +53,19 @@ public class AutorFileService : IAutorService
         return JsonSerializer.Deserialize<List<Autor>>(json) ?? new List<Autor>();
     }
 
-    public Autor GetById(int id)
+    public Autor? GetById(int id)
     {
         //Leo el contenido del archivo
         var json = _fileStorageService.Read(_filePath);
         //Deserializo el Json en una lista de Autores
-        List<Autor> autores = JsonSerializer.Deserialize<List<Autor>>(json);
+        List<Autor>? autores = JsonSerializer.Deserialize<List<Autor>>(json);
         if(autores is null) return null;
         //Busco el autor por Id y devuelvo el autor encontrado
         return autores.Find(a => a.Id == id);  
 
     }
 
-    public Autor Update(int id, Autor autor)
+    public Autor? Update(int id, Autor autor)
     {
          // Leer el contenido del archivo JSON
         var json = _fileStorageService.Read(_filePath);

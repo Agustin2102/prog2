@@ -19,7 +19,7 @@ public class AutorController : ControllerBase {
   [HttpGet("{id}")]
   public ActionResult<Autor> GetById(int id)
   {
-  var a = _autorService.GetById(id);
+  Autor? a = _autorService.GetById(id);
   if(a == null)
   {
     return NotFound("Autor no Encotrado");
