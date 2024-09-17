@@ -7,8 +7,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSqlServer<BibliotecaContext>(builder.Configuration.GetConnectionString("cnBiblioteca"));
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
-builder.Services.AddScoped<IAutorService, AutorFileService>();
+builder.Services.AddScoped<IAutorService, AutorDbService>();
 builder.Services.AddScoped<ILibroService, LibroFileService>();
 
 var app = builder.Build();
