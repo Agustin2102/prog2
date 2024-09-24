@@ -10,7 +10,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSqlServer<BibliotecaContext>(builder.Configuration.GetConnectionString("cnBiblioteca"));
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<IAutorService, AutorDbService>();
-builder.Services.AddScoped<ILibroService, LibroFileService>();
+builder.Services.AddScoped<ILibroService, LibroDbService>();
 
 var app = builder.Build();
 

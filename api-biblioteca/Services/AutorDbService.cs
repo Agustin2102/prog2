@@ -1,4 +1,6 @@
 
+using Microsoft.EntityFrameworkCore;
+
 public class AutorDbService : IAutorService
 {
   private readonly BibliotecaContext _context;
@@ -9,26 +11,32 @@ public class AutorDbService : IAutorService
   }
     public Autor Create(Autor a)
     {
-        throw new NotImplementedException();
+       _context.Autores.Add(a);
+       _context.SaveChanges();
+       return a;
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        var a = _context.Autores.Find(id);
+        _context.Autores.Remove(a);
+        _context.SaveChanges();
     }
 
     public IEnumerable<Autor> GetAll()
     {
-        return _context.Autores;
+        return _context.Autores; //.Where(a => a.Nombre.Contains("j")) ;
     }
 
     public Autor? GetById(int id)
     {
-        throw new NotImplementedException();
+        return _context.Autores.Find(id);
     }
 
     public Autor? Update(int id, Autor a)
     {
-        throw new NotImplementedException();
+        _context.Entry(a).State = EntityState.Modified;
+        _context.SaveChanges();
+        return a;
     }
 }

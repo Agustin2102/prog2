@@ -32,7 +32,7 @@ public class AutorController : ControllerBase {
   [HttpPost]
   public ActionResult<Autor> NuevoAutor(Autor a){
     //Asigno el id al Autor nuevo buscando el maximo id en la lista actual de autores y sumando 1
-    a.Id = _autorService.GetAll().Max(m => m.Id) + 1;
+    //a.Id = _autorService.GetAll().Max(m => m.Id) + 1;
     // Llamo al metodo Create del servicio de autor para dar de alta el nuevo autor
     a = _autorService.Create(a);
     //Devuelvo el resultado de llamar al metodo GetById pasando como parametro el Id del nuevo autor
