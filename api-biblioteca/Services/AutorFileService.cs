@@ -1,7 +1,7 @@
 
 using System.Text.Json;
 
-public class AutorFileService : IAutorService
+public class AutorFileService
 {
     private readonly string _filePath = "Data/Autores.json";
     private readonly IFileStorageService _fileStorageService;

@@ -14,7 +14,7 @@ public class Libro
 
   public int Paginas {get; set;} 
 
-  public int AnoPublicacion {get; set;}
+  public int Ano {get; set;}
   public string? Url_Portada {get; set;}
 
   public List<Tema> Temas {get; set;}

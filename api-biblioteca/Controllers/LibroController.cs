@@ -40,7 +40,14 @@ public class LibroController : ControllerBase
     public ActionResult<Libro> NuevoLibro(Libro l)
     {
       // a.Id = _autorService.GetAll().Max(m => m.Id) + 1;
-      Autor a = _autorService.Create(l.Autor);
+      AutorDTO autorDTO = new()
+      {
+        Nombre = l.Autor.Nombre,
+        Apellido = l.Autor.Apellido
+      };
+      Autor a = _autorService.Create(autorDTO);
+      l.Autor = a;
+      
       Libro libro = _libroService.Create(l);
       return CreatedAtAction(nameof(GetById), new { id = libro.Id}, libro);
     }

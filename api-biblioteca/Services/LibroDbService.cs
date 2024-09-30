@@ -1,6 +1,14 @@
 
+using Microsoft.EntityFrameworkCore;
+
 public class LibroDbService : ILibroService
 {
+    private readonly BibliotecaContext _context;
+
+    public LibroDbService(BibliotecaContext context)
+    {
+        _context = context;
+    }
     public Libro Create(Libro l)
     {
         throw new NotImplementedException();
@@ -8,17 +16,22 @@ public class LibroDbService : ILibroService
 
     public bool Delete(int id)
     {
-        throw new NotImplementedException();
+        Libro? l = _context.Libros.Find(id);
+        if (l is null) return false;
+
+        _context.Libros.Remove(l);
+        _context.SaveChanges();
+        return true;
     }
 
     public IEnumerable<Libro> GetAll()
     {
-        throw new NotImplementedException();
+        return _context.Libros.Include(el => el.Autor).Include(l => l.Temas);
     }
 
     public Libro? GetById(int id)
     {
-        throw new NotImplementedException();
+        return _context.Libros.Find(id);
     }
 
     public bool Update(int id, Libro l)

@@ -9,11 +9,16 @@ public class AutorDbService : IAutorService
   {
     _context = context;
   }
-    public Autor Create(Autor a)
+    public Autor Create(AutorDTO a)
     {
-       _context.Autores.Add(a);
+        Autor autor = new()
+        {
+            Nombre = a.Nombre,
+            Apellido = a.Apellido
+        };
+        _context.Autores.Add(autor);
        _context.SaveChanges();
-       return a;
+       return autor;
     }
 
     public void Delete(int id)
