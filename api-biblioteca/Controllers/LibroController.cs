@@ -37,29 +37,20 @@ public class LibroController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<Libro> NuevoLibro(Libro l)
+    public ActionResult<Libro> NuevoLibro(LibroDTO l)
     {
-      // a.Id = _autorService.GetAll().Max(m => m.Id) + 1;
-      AutorDTO autorDTO = new()
-      {
-        Nombre = l.Autor.Nombre,
-        Apellido = l.Autor.Apellido
-      };
-      Autor a = _autorService.Create(autorDTO);
-      l.Autor = a;
-      
       Libro libro = _libroService.Create(l);
       return CreatedAtAction(nameof(GetById), new { id = libro.Id}, libro);
     }
 
     [HttpPut("{id}")]
-    public ActionResult<Libro> Update(int id, Libro l)
+    public ActionResult<Libro> Update(int id, LibroDTO l)
     {
       try
       {
-        bool libro = _libroService.Update(id, l);
-        if ( libro is false ) return NotFound(new {Message = $"No se encontro el libro con id: {id}"});
-        return NoContent();
+        Libro libro = _libroService.Update(id, l);
+        if ( libro is null ) return NotFound(new {Message = $"No se pudo actualizar el libro con id: {id}"});
+        return CreatedAtAction(nameof(GetById), new { id = libro.Id}, libro);
       }
       catch (System.Exception e)
       {

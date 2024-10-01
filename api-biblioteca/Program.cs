@@ -11,6 +11,7 @@ builder.Services.AddSqlServer<BibliotecaContext>(builder.Configuration.GetConnec
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<IAutorService, AutorDbService>();
 builder.Services.AddScoped<ILibroService, LibroDbService>();
+builder.Services.AddScoped<ITemaService, TemaDbService>();
 
 var app = builder.Build();
 

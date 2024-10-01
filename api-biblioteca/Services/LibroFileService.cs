@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-public class LibroFileService : ILibroService
+public class LibroFileService //: ILibroService
 {
     private readonly IFileStorageService _fileStorageService;
     private readonly IAutorService _autorService;
@@ -11,18 +11,19 @@ public class LibroFileService : ILibroService
       _fileStorageService = fileStorageService;
       _autorService = autorService;
     }
-    public Libro Create(Libro l)
+    public Libro Create(LibroDTO l)
     {
-      List<Libro> libros = (List<Libro>)GetAll();
+      // List<Libro> libros = (List<Libro>)GetAll();
 
-      //Encontramos el maximo id existente
-      int lastId = libros.Max( l => l.Id);
-      l.Id = lastId + 1;
+      // //Encontramos el maximo id existente
+      // int lastId = libros.Max( l => l.Id);
+      // //l.Id = lastId + 1;
 
-      libros.Add(l);
-      var json = JsonSerializer.Serialize(libros);
-      _fileStorageService.Write(_filePath , json);
-      return l;
+      // libros.Add(l);
+      // var json = JsonSerializer.Serialize(libros);
+      // _fileStorageService.Write(_filePath , json);
+      // return l;
+      throw new NotImplementedException();
     }
 
     public bool Delete(int id)
@@ -48,7 +49,7 @@ public class LibroFileService : ILibroService
     }
 
     public Libro? GetById(int id)
-    {
+    {      
       List<Libro> libros = (List<Libro>)GetAll();
       return libros.Find( l => l.Id == id);
     }

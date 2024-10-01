@@ -9,9 +9,25 @@ public class LibroDbService : ILibroService
     {
         _context = context;
     }
-    public Libro Create(Libro l)
+    public Libro Create(LibroDTO l)
     {
-        throw new NotImplementedException();
+        var nuevoLibro = new Libro
+        {
+            Titulo = l.Titulo,
+            AutorId = l.AutorId,
+            Paginas = l.Paginas,
+            Ano = l.Ano,
+            Url_Portada = l.Url_Portada,
+            Temas = new List<Tema>()
+        };
+
+        foreach(int idTema in l.TemasIds)
+        {
+            nuevoLibro.Temas.Add(_context.Temas.Find(idTema));
+        }
+        _context.Add(nuevoLibro);
+        _context.SaveChanges();
+        return nuevoLibro;
     }
 
     public bool Delete(int id)
@@ -34,8 +50,26 @@ public class LibroDbService : ILibroService
         return _context.Libros.Find(id);
     }
 
-    public bool Update(int id, Libro l)
+    public Libro Update(int id, LibroDTO l)
     {
-        throw new NotImplementedException();
+        var libroUpdate = _context.Libros.Include(l => l.Temas).FirstOrDefault(l => l.Id == id);
+        Console.WriteLine(libroUpdate.Id);
+        libroUpdate.Titulo = l.Titulo;
+        libroUpdate.Ano = l.Ano;
+        libroUpdate.Paginas = l.Paginas;
+        libroUpdate.AutorId = l.AutorId;
+        libroUpdate.Url_Portada = l.Url_Portada;
+        libroUpdate.Temas.Clear();
+
+        
+        foreach(int idTema in l.TemasIds)
+        {
+            libroUpdate.Temas.Add(_context.Temas.Find(idTema));
+        }
+
+        _context.Entry(libroUpdate).State = EntityState.Modified;
+        _context.SaveChanges();
+        return libroUpdate;
+
     }
 }

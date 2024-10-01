@@ -16,6 +16,14 @@ public class AutorController : ControllerBase {
     return Ok(_autorService.GetAll());
   }
     
+  [HttpGet("{id}/libros")]
+  public ActionResult<List<Libro>> GetLibros(int id)
+  {
+    var a = _autorService.GetLibros(id);
+    return Ok(a);
+
+  }
+
   [HttpGet("{id}")]
   public ActionResult<Autor> GetById(int id)
   {
@@ -25,7 +33,7 @@ public class AutorController : ControllerBase {
     return NotFound("Autor no Encotrado");
   }
   
-  return Ok(a);
+    return Ok(a);
 
   }
 
@@ -62,7 +70,7 @@ public class AutorController : ControllerBase {
     if (autor is null) {
       return NotFound(); // Si no se encontró el autor, retorna 404 Not Found
     }
-    return Ok(autor); // Retorna el recurso actualizado
+     return CreatedAtAction(nameof(GetById), new {id = autor.Id}, autor); // Retorna el recurso actualizado
   }
 
 }

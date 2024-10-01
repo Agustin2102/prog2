@@ -1,9 +1,12 @@
+using System.Text.Json.Serialization;
+
 public class Autor
 {
   public int Id { get; set; }
   public string? Nombre { get; set; }
   public string? Apellido { get; set; }
-
+  [JsonIgnore]
+  public virtual List<Libro> Libros {get; set;}
   public Autor()
   {
 

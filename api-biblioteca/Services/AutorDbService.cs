@@ -44,4 +44,10 @@ public class AutorDbService : IAutorService
         _context.SaveChanges();
         return a;
     }
+
+    public IEnumerable<Libro> GetLibros(int id)
+    {
+        Autor a = _context.Autores.Include(a => a.Libros).ThenInclude(l => l.Temas).FirstOrDefault(x => x.Id == id);
+        return a.Libros;
+    }
 }

@@ -6,4 +6,5 @@ public interface IAutorService
 
   public void Delete(int id);
   public Autor? Update(int id, Autor a);
+  public IEnumerable<Libro> GetLibros(int id);
 }

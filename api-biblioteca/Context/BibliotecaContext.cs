@@ -18,6 +18,33 @@ public class BibliotecaContext:DbContext
           entity.Property(a => a.Apellido).IsRequired().HasMaxLength(100);
         }
         );
+
+        modelBuilder.Entity<Libro>(entity =>
+        {
+          entity.Property(l => l.Titulo).IsRequired();
+          entity.Property(l => l.Paginas).IsRequired();
+          entity.Property(l => l.Ano).IsRequired();
+          entity.Property(l => l.Url_Portada).IsRequired(false);
+
+           entity.HasOne(l => l.Autor)
+           .WithMany(a => a.Libros)
+           .HasForeignKey(l => l.AutorId).IsRequired();
+
+           entity.HasMany(l => l.Temas)
+           .WithMany(t => t.Libros)
+           .UsingEntity(j => j.ToTable("LibroTema") );
+           
+        }       
+        );
+
+        modelBuilder.Entity<Tema>(entity => 
+        {
+          entity.Property(t => t.Nombre).IsRequired().HasMaxLength(50);
+        }
+        );
+
+      
+
     }
 
 } 
