@@ -8,6 +8,12 @@
 Vamos a crear el controlador **AccountController**, que contendrá los endpoints para registro, login y asignación de roles a usuarios.
 
 ```csharp
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 [ApiController]
 [Route("api/[controller]")]
 public class AccountController : ControllerBase
@@ -126,6 +132,12 @@ public class RegisterModel
 {
     public string Username { get; set; }
     public string Email { get; set; }
+    public string Password { get; set; }
+}
+
+public class LoginModel
+{
+    public string Username { get; set; }
     public string Password { get; set; }
 }
 
