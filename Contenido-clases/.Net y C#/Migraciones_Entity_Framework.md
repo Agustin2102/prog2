@@ -9,6 +9,9 @@ Las migraciones en Entity Framework (EF) permiten gestionar los cambios en el es
 2. **Creación de Migraciones**: EF compara el estado actual de los modelos con el estado anterior y genera una migración que contiene los scripts necesarios para actualizar la base de datos.
 3. **Aplicación de Migraciones**: Los cambios se aplican a la base de datos, manteniéndola sincronizada con los modelos de la aplicación.
 
+## Instalar EF
+dotnet ef migrations add InitialIdentityMigration --context ApplicationDbContext
+
 ## Comandos principales para trabajar con migraciones en Bash
 
 ### Agregar una nueva migración:
