@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
     
 [ApiController]
@@ -10,6 +11,7 @@ public class AutorController : ControllerBase {
   {
     _autorService = autorService;
   }
+  [Authorize]
   [HttpGet]
   public ActionResult<List<Autor>> GetAllAutores(){
 
