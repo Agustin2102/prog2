@@ -64,7 +64,7 @@ using Microsoft.AspNetCore.Identity;
 public class ApplicationUser : IdentityUser
 {
     // Puedes agregar propiedades adicionales si lo necesitas
-    public string NombreCompleto { get; set; }
+    // public string NombreCompleto { get; set; }
 }
 ```
 
