@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
     
 [ApiController]
+[Authorize]
 [Route("api/autores")]
 public class AutorController : ControllerBase {
 
@@ -11,14 +12,16 @@ public class AutorController : ControllerBase {
   {
     _autorService = autorService;
   }
-  [Authorize]
+  
   [HttpGet]
+  // [AllowAnonymous]
   public ActionResult<List<Autor>> GetAllAutores(){
 
     return Ok(_autorService.GetAll());
   }
     
   [HttpGet("{id}/libros")]
+  [Authorize(Roles = "admin")]
   public ActionResult<List<Libro>> GetLibros(int id)
   {
     var a = _autorService.GetLibros(id);

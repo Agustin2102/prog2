@@ -16,6 +16,7 @@
 *.mov
 *.rar
 *.mdf
+*.env
 *.ldf
 **/nuspec.list
 **/packages/
